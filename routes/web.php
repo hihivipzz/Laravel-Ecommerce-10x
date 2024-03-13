@@ -18,3 +18,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AdminCategoryController::class,'getCategoryList']);
 Route::get('/product', [AdminProductController::class,'getProductList']);
+require __DIR__ . '/admin/admin.php';

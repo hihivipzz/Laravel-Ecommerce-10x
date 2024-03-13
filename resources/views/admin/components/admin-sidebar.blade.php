@@ -10,9 +10,31 @@
         <ul class="mt-2 space-y-2">
             @foreach ($sidebarItems as $item)
                 <li>
-                    <a href="{{ $item['url'] }}" class="block px-4 py-2 rounded hover:bg-gray-200">{{ $item['title'] }}</a>
+                    <a href="/admin/{{ $item['url'] }}" class="block px-4 py-2 rounded hover:bg-gray-200">{{ $item['title'] }}</a>
                 </li>
             @endforeach
         </ul>
     </div>
 </aside>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Lấy đường dẫn URL hiện tại
+        var currentUrl = window.location.pathname;
+        
+        // Lặp qua từng sidebarItem và kiểm tra URL
+        var sidebarItems = document.querySelectorAll('aside a');
+        sidebarItems.forEach(function(item) {
+            var itemUrl = item.getAttribute('href');
+
+            var firstPartItemUrl = itemUrl.split('/')[2];
+
+            var firstPartCurrentUrl = currentUrl.split('/')[2];
+
+            if (firstPartItemUrl === firstPartCurrentUrl) {
+                item.classList.add('bg-gray-200');
+            }
+        });
+    });
+</script>
+

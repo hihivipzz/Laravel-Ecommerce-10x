@@ -3,7 +3,9 @@
 
     
     use App\Http\Admin\Controllers\AdminBaseController;
-    use App\Http\Admin\Services\AdminCategoryService;
+use App\Http\Admin\Requests\GetCategoryRequest;
+use App\Http\Admin\Services\AdminCategoryService;
+    use GuzzleHttp\Psr7\Request;
 
     class AdminCategoryController extends AdminBaseController{
         protected $adminCategoryService;
@@ -13,8 +15,8 @@
             $this->adminCategoryService = new AdminCategoryService();
         }
 
-        public function getCategoryList(){
-            return $this->adminCategoryService->getCategoryList();
+        public function getCategoryList(GetCategoryRequest $request){
+            return $this->adminCategoryService->getCategoryList($request);
         }
 
         public function addCategory(){
